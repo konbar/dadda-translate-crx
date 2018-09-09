@@ -2,7 +2,7 @@
   <div class="__transltor" :class="{ 
       '__is-dialog-wrap': resultAsDialog 
     }">
-    <translator-button :class="{ '__is-show': !panelVisible && selection && !hasKeyboardControl }" :style="buttonPositionStyle" @click="panelVisible = true" />
+    <translator-button :class="{ '__is-show': buttonVisible }" :style="buttonPositionStyle" @click="panelVisible = true" />
 
     <result-panel v-if="resultPanelVisible" :hide="hidePanelInRoot" :text="selection" :is-dialog="resultAsDialog" :style="panelPositionStyle" :isDialog="resultAsDialog" :result="translationResult"></result-panel>
   </div>
@@ -17,6 +17,14 @@ export default {
   name: 'translator',
 
   mixins: [selectionMixin],
+
+  computed: {
+    buttonVisible() {
+      const { panelVisible, selection, hasKeyboardDisplayControl } = this
+
+      return !panelVisible && selection && !hasKeyboardDisplayControl
+    }
+  },
 
   data() {
     return {
@@ -43,8 +51,8 @@ export default {
   async mounted() {
     const { onMouseUp, onAltKeyDown, showWhateverChange } = this
 
-    document.addEventListener('mouseup', onMouseUp)
-    document.addEventListener('keydown', showWhateverChange)
+    document.addEventListener('mouseup', onMouseUp) // method in Selection-mixin.js
+    document.addEventListener('keydown', changeShowDirectlyConfig)
   },
 
   methods: {
@@ -60,14 +68,11 @@ export default {
       this.showPanel(text)
     },
 
-    async showWhateverChange(e) {
-      if (e.altKey && e.shiftKey && e.keyCode === 68) {
-        const isShowWhatever = await this.$storage.get(TR_SETTING_IS_DIRECTLY_KEY)
+    async changeShowDirectlyConfig(e) {
+      if (e.altKey && e.keyCode === 68) {
+        const showPanelDirectly = await this.$storage.get(TR_SETTING_IS_DIRECTLY_KEY)
 
-        if (isShowWhatever) {
-        }
-
-        this.$storage.set(TR_SETTING_IS_DIRECTLY_KEY, !isShowWhatever)
+        this.$storage.set(TR_SETTING_IS_DIRECTLY_KEY, !showPanelDirectly)
       }
     }
   }

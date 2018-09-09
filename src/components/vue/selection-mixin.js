@@ -1,16 +1,6 @@
-import {
-  _calcPosition,
-  _inBlackList,
-  _isAllPunctuation,
-  _isAllChinese,
-  _isAllNumber
-} from '@/utils'
+import { _calcPosition, _inBlackList, _isAllPunctuation, _isAllChinese, _isAllNumber } from '@/utils'
 
-import {
-  TR_SETTING_IS_DIRECTLY_KEY,
-  TR_SETTING_SKIP_CHINESE_KEY,
-  TR_SETTING_KEYBOARD_CONTROL
-} from '@/utils/constants'
+import { TR_SETTING_IS_DIRECTLY_KEY, TR_SETTING_SKIP_CHINESE_KEY, TR_SETTING_KEYBOARD_CONTROL } from '@/utils/constants'
 
 export default {
   computed: {
@@ -44,7 +34,7 @@ export default {
   data() {
     return {
       selection: '',
-      panelVisible: false,
+      panelVisible: true,
       translateLoaded: false,
       position: {
         panelX: 0,
@@ -93,13 +83,13 @@ export default {
     async showPanel(text) {
       const { $root: { inExtension }, $storage } = this
 
-      // 如果设置了<划词后直接翻译>则直接显示结果面板，忽略按键控制
-      const isShowWhatever = await $storage.get(TR_SETTING_IS_DIRECTLY_KEY)
+      // 如果设置了 <划词后直接翻译> 则直接显示结果面板，忽略按键控制
+      const showPanelDirectly = await $storage.get(TR_SETTING_IS_DIRECTLY_KEY)
 
       if (inExtension) {
         this.panelVisible = true
       } else {
-        this.panelVisible = isShowWhatever
+        this.panelVisible = showPanelDirectly
       }
 
       this.translationResult = null
