@@ -1,5 +1,4 @@
 import { _calcPosition, _inBlackList, _isAllPunctuation, _isAllChinese, _isAllNumber } from '@/utils'
-
 import { TR_SETTING_IS_DIRECTLY_KEY, TR_SETTING_SKIP_CHINESE_KEY, TR_SETTING_KEYBOARD_CONTROL } from '@/utils/constants'
 
 export default {
@@ -80,42 +79,6 @@ export default {
       this.hasControlKeyBeenPressed = false
     },
 
-    async showPanel(text) {
-      const { $root: { inExtension }, $storage } = this
-
-      // 如果设置了 <划词后直接翻译> 则直接显示结果面板，忽略按键控制
-      const showPanelDirectly = await $storage.get(TR_SETTING_IS_DIRECTLY_KEY)
-
-      if (inExtension) {
-        this.panelVisible = true
-      } else {
-        this.panelVisible = showPanelDirectly
-      }
-
-      this.translationResult = null
-      this.translateLoaded = false
-
-      // 发送翻译请求
-      this.translateText(text)
-    },
-
-    /*
-     | ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅|
-     |   发送翻译请求    |
-     |_________________|
-     */
-    async translateText(text) {
-      const { $root, $root: { inExtension } } = this
-      chrome.runtime.sendMessage({ name: 'translate', text, inExtension }, res => {
-        if (!res.isHasOxford && /^[A-Z][a-zA-Z]*$/.test(text)) {
-          return this.translateText(text.toLowerCase())
-        }
-        this.translationResult = res
-        this.translateLoaded = true
-        this.$root.count = ++$root.count
-      })
-    },
-
     /**
      * 监听 MouseUp 事件来怕段划词完成，触发情况有两种：划词、双击
      * ! 注意这里是 async
@@ -155,6 +118,42 @@ export default {
           this.showPanel(text)
         }
       }
+    },
+
+    async showPanel(text) {
+      const { $root: { inExtension }, $storage } = this
+
+      // 如果设置了 <划词后直接翻译> 则直接显示结果面板，忽略按键控制
+      const showPanelDirectly = await $storage.get(TR_SETTING_IS_DIRECTLY_KEY)
+
+      if (inExtension) {
+        this.panelVisible = true
+      } else {
+        this.panelVisible = showPanelDirectly
+      }
+
+      this.translationResult = null
+      this.translateLoaded = false
+
+      // 发送翻译请求
+      this.translateText(text)
+    },
+
+    /*
+     | ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅|
+     |   发送翻译请求    |
+     |_________________|
+     */
+    async translateText(text) {
+      const { $root, $root: { inExtension } } = this
+      chrome.runtime.sendMessage({ name: 'translate', text, inExtension }, res => {
+        if (!res.isHasOxford && /^[A-Z][a-zA-Z]*$/.test(text)) {
+          return this.translateText(text.toLowerCase())
+        }
+        this.translationResult = res
+        this.translateLoaded = true
+        this.$root.count = ++$root.count
+      })
     }
   }
 }

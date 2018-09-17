@@ -5,8 +5,8 @@ import Storage from '@/utils/storage'
 import shanbay from '@/services/shanbay'
 import youdao from '@/services/youdao'
 
-import Toast from '@/chrome/toast'
-import setNewAlarm from '@/chrome/alarm'
+import Toast from '@/platforms/toast'
+import setNewAlarm from '@/platforms/alarm'
 
 import { _removeTRId, _hasTRId, _wrapTRId, _sleep } from '@/utils'
 import { DICTIONARY_HOST } from '@/api/host'
@@ -25,11 +25,6 @@ import {
   TR_SETTING_KEYBOARD_CONTROL,
   TR_SETTING_CLOSE_ALL_TOAST_KEY
 } from '@/utils/constants'
-
-// import HotReload from './hot-reload'
-
-// // 开发环境热加载
-// HotReload()
 
 // 将单词推入下一个阶段
 const moveWord2NextStage = async word => {
@@ -166,7 +161,7 @@ chrome.alarms.onAlarm.addListener(async alarm => {
     const currentVocabulary = await Vocabulary.get()
     const word = _removeTRId(alarm.name)
 
-    Toast(word, 'Click to see at dictionary.com')
+    Toast(word, word.e)
   }
 })
 

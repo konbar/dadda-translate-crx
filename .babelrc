@@ -1,21 +1,24 @@
 {
   "presets": [
-    "react",
+    "@babel/preset-react",
+    "@babel/preset-typescript",
     [
-      "env",
+      "@babel/preset-env",
       {
         "modules": false,
         "loose": true,
-        "useBuiltIns": true,
+        "useBuiltIns": "entry",
         "targets": {
-          "browsers": ["Chrome >= 61"]
+          "browsers": [
+            "Chrome >= 61"
+          ]
         }
       }
     ]
   ],
   "plugins": [
-    "transform-object-rest-spread",
-    "transform-decorators-legacy",
-    "transform-class-properties"
+    "@babel/plugin-proposal-object-rest-spread",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-proposal-class-properties"
   ]
 }

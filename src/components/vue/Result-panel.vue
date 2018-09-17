@@ -132,7 +132,7 @@
 import _merge from 'lodash-es/merge'
 import WordModel from '@/model/word'
 import TranslationModel from '@/model/translation'
-import selectionMixin from '@/components/vue/Selection-mixin'
+import selectionMixin from '@/components/vue/Select-Word'
 import { _removeTag, _abridgePOS, _uuid } from '@/utils'
 import {
   TR_SETTING_AUTO_SPEAK,

@@ -2,14 +2,14 @@
   <div class="__transltor" :class="{ 
       '__is-dialog-wrap': resultAsDialog 
     }">
-    <translator-button :class="{ '__is-show': buttonVisible }" :style="buttonPositionStyle" @click="panelVisible = true" />
+    <dadda-button :class="{ '__is-show': buttonVisible }" :style="buttonPositionStyle" @click="panelVisible = true" />
 
     <result-panel v-if="resultPanelVisible" :hide="hidePanelInRoot" :text="selection" :is-dialog="resultAsDialog" :style="panelPositionStyle" :isDialog="resultAsDialog" :result="translationResult"></result-panel>
   </div>
 </template>
 
 <script>
-import selectionMixin from '@/components/vue/Selection-mixin'
+import selectionMixin from '@/components/vue/Select-Word'
 import { _calcPositionAsDialog, _inBlackList } from '@/utils'
 import { TR_SETTING_IS_DIRECTLY_KEY, TR_SETTING_KEYBOARD_CONTROL } from '@/utils/constants'
 

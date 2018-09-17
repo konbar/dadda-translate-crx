@@ -5,7 +5,7 @@ import VocabularyMachine from '@/utils/vocabulary'
 import { _parseQuery, _normalizeQuery } from '@/utils'
 
 import Sidebar from '@/components/react/Sidebar'
-import VocabularyToolBar from '@/components/react/Vocabulary-Tool-Bar'
+import VocabularyToolBar from './Vocabulary-Toolbar'
 import Vocabulary from '@/components/react/Vocabulary'
 import Setting from '@/components/react/Setting'
 import { ToastContainer } from 'react-toastify'

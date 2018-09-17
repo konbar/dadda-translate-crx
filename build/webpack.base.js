@@ -14,17 +14,17 @@ function resolve(dir) {
 module.exports = {
   context: resolve('src'),
   entry: {
-    background: './chrome/background/background',
-    content: './chrome/content/content',
-    vocabulary: './chrome/vocabulary/vocabulary',
-    popup: './chrome/popup/popup'
+    background: './platforms/background/background',
+    content: './platforms/content/content',
+    vocabulary: './platforms/vocabulary/vocabulary',
+    popup: './platforms/popup/popup'
   },
   output: {
     path: resolve('dist'),
     filename: '[name]/[name].js'
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       '@': resolve('src')
@@ -67,7 +67,7 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/,
         loader: 'babel-loader',
         include: [resolve('src')]
       },

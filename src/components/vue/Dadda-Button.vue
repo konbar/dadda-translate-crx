@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'translator-button',
+  name: 'dadda-button',
 
   methods: {
     handleClick() {
