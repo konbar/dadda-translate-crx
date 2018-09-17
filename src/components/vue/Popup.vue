@@ -76,7 +76,7 @@ export default {
   methods: {
     goOptionsPage(link = 'vocabulary') {
       let isActive = false
-      const path = chrome.runtime.getURL(`options/options.html#link=${link}`)
+      const path = chrome.runtime.getURL(`vocabulary/vocabulary.html#link=${link}`)
       chrome.tabs.query({ windowId: chrome.windows.WINDOW_ID_CURRENT }, tabs => {
         tabs.forEach(tab => {
           if (tab.url === path) {

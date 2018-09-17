@@ -2,7 +2,6 @@
   <div class="__transltor" :class="{ 
       '__is-dialog-wrap': resultAsDialog 
     }">
-
     <translator-button :class="{ '__is-show': !panelVisible && selection && !hasKeyboardControl }" :style="buttonPositionStyle" @click="panelVisible = true" />
 
     <result-panel v-if="resultPanelVisible" :hide="hidePanelInRoot" :text="selection" :is-dialog="resultAsDialog" :style="panelPositionStyle" :isDialog="resultAsDialog" :result="translationResult"></result-panel>

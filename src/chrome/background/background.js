@@ -26,10 +26,10 @@ import {
   TR_SETTING_CLOSE_ALL_TOAST_KEY
 } from '@/utils/constants'
 
-import HotReload from './hot-reload'
+// import HotReload from './hot-reload'
 
-// 开发环境热加载
-HotReload()
+// // 开发环境热加载
+// HotReload()
 
 // 将单词推入下一个阶段
 const moveWord2NextStage = async word => {

@@ -16,7 +16,7 @@ module.exports = {
   entry: {
     background: './chrome/background/background',
     content: './chrome/content/content',
-    options: './chrome/options/options',
+    vocabulary: './chrome/vocabulary/vocabulary',
     popup: './chrome/popup/popup'
   },
   output: {
@@ -94,9 +94,9 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      filename: resolve('dist/options/options.html'),
-      chunks: ['options'],
-      template: 'chrome/options/options.html',
+      filename: resolve('dist/vocabulary/vocabulary.html'),
+      chunks: ['vocabulary'],
+      template: 'chrome/vocabulary/vocabulary.html',
       inject: false
     }),
 
