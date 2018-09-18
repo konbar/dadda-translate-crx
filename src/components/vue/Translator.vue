@@ -51,7 +51,7 @@ export default {
   async mounted() {
     const { onMouseUp, onAltKeyDown, showWhateverChange } = this
 
-    document.addEventListener('mouseup', onMouseUp) // method in Selection-mixin.js
+    document.addEventListener('mouseup', onMouseUp) // method in Selection-mixin.ts
     document.addEventListener('keydown', changeShowDirectlyConfig)
   },
 

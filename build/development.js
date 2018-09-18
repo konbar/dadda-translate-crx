@@ -1,6 +1,6 @@
 const merge = require('webpack-merge')
-const baseWebpackConfig = require('./webpack.base')
-const DashboardPlugin = require('webpack-dashboard/plugin');
+const baseWebpackConfig = require('./base')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 const ChromeExtensionReloader = require('webpack-chrome-extension-reloader')
 
 const devConfig = merge(baseWebpackConfig, {

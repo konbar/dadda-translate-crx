@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vocabulary from '@/utils/vocabulary'
 import Storage from '@/utils/storage'
-import { TR_SETTING_BLACK_LIST_KEY } from '@/utils/constants'
 import { _removeTag, _inBlackList } from '@/utils'
 
 import '@/styles/index_translator.scss'
@@ -21,7 +20,7 @@ Vue.use({
   }
 })
 
-const initTranslator = _ => {
+const initTranslator = () => {
   const div = document.createElement('div')
   div.id = '__tr-container__'
 
@@ -45,7 +44,6 @@ const initTranslator = _ => {
   })
 
   Vue.config.devtools = false
-  Vue.config.slient = true
   Vue.config.productionTip = false
 }
 

@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import withView from './@View'
 import mapState from '@/utils/mapState'
-
-import WordCard from './Word-Card'
 
 @withView
 @connect(mapState)

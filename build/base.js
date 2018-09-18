@@ -33,12 +33,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
+        test: /\.(js|vue|ts|tsx)$/,
+        loader: 'tslint-loader',
         enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
+        include: [resolve('src')],
         options: {
-          formatter: require('eslint-friendly-formatter')
+          // formatter: require('eslint-friendly-formatter')
         }
       },
       {
@@ -68,7 +68,9 @@ module.exports = {
       },
       {
         test: /\.(js|ts|tsx)$/,
-        loader: 'babel-loader',
+        use: [
+          'babel-loader'
+        ],
         include: [resolve('src')]
       },
       {
@@ -89,14 +91,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: resolve('dist/popup/popup.html'),
       chunks: ['popup'],
-      template: 'chrome/popup/popup.html',
+      template: 'platforms/popup/popup.html',
       inject: false
     }),
 
     new HtmlWebpackPlugin({
       filename: resolve('dist/vocabulary/vocabulary.html'),
       chunks: ['vocabulary'],
-      template: 'chrome/vocabulary/vocabulary.html',
+      template: 'platforms/vocabulary/vocabulary.html',
       inject: false
     }),
 

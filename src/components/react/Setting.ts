@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import withView from './@View'
 import Switch from './Switch'
 import mapState from '@/utils/mapState'
-import VocabularyMachine from '@/utils/vocabulary'
+import VocabularyMachine from 'utils/vocabulary'
 import exportFile from '@/utils/exportFile'
 
 import {
